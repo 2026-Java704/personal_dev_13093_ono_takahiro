@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品更新</title>
+</head>
+<body>
+	<h1>商品更新</h1>
+
+	<form th:action="'/items/'+${item.id}+'/edit'" method="post">
+		<table border="1">
+			<tr>
+				<th>商品ID</th>
+				<td th:text="${item.id}"></td>
+			</tr>
+			<tr>
+				<th>カテゴリーID</th>
+				<td>
+					<input type="text" name="categoryId" th:value="${item.categoryId}">
+				</td>
+			</tr>
+			<tr>
+				<th>商品名</th>
+				<td>
+					<input type="text" name="name" th:value="${item.name}">
+				</td>
+			</tr>
+			<tr>
+				<th>値段</th>
+				<td>
+					<input type="text" name="price" th:value="${item.price}">
+				</td>
+			</tr>
+		</table>
+		<input type="submit" value="更新">
+	</form>
+</body>
+</html>
