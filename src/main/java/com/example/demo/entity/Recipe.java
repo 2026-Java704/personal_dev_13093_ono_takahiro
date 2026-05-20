@@ -10,114 +10,77 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "recipes") // 対応するテーブル名
+@Table(name = "recipes")
 public class Recipe {
 
-	// フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id; // レシピID
+	private Integer id;
 
-	@Column(name = "category_id")
-	private Integer categoryId; // カテゴリーID
-	private String name; // 料理名
-	private String recipe; // レシピ文
+	// 料理名
+	@Column(name = "name")
+	private String name;
 
-	//Userテーブルとのリレーション
+	// レシピ本文
+	@Column(name = "recipe")
+	private String recipe;
+
+	// Userテーブルとのリレーション
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	// コンストラクタ
+	// Categoryテーブルとのリレーション
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+
 	public Recipe() {
 	}
 
-	public Recipe(Integer id, Integer categoryId, User user, String name, String recipes) {
-		this.id = id;
-		this.categoryId = categoryId;
-		this.name = name;
-		this.user = user;
-	}
-
-	public Recipe(Integer categoryId, String name, String recipe) {
-		this.categoryId = categoryId;
+	public Recipe(Category category, String name, String recipe) {
+		this.category = category;
 		this.name = name;
 		this.recipe = recipe;
 	}
 
-	/**
-	 * @return id
-	 */
 	public Integer getId() {
 		return id;
 	}
 
-	/**
-	 * @param id セットする id
-	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return categoryId
-	 */
-	public Integer getCategoryId() {
-		return categoryId;
+	public Category getCategory() {
+		return category;
 	}
 
-	/**
-	 * @param categoryId セットする categoryId
-	 */
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
-	/**
-	 * @return userId
-	 */
 	public User getUser() {
 		return user;
 	}
 
-	/**
-	 * @param userId セットする userId
-	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	/**
-	 * @return name
-	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name セットする name
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	/**
-	 * @return recipes
-	 */
 	public String getRecipe() {
 		return recipe;
 	}
 
-	/**
-	 * @param recipes セットする recipes
-	 */
-	public void setRecipe(String recipes) {
-		this.recipe = recipes;
+	public void setRecipe(String recipe) {
+		this.recipe = recipe;
 	}
-
-	public void setUserName(String userName) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
 }

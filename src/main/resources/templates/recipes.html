@@ -23,18 +23,20 @@
 	       th:text="${category.name}"
 	       style="margin-right: 5px;"></a>
 		<br>
-		<!-- レシピの一覧を表示 -->
+		<!-- レシピの一覧を表示(レシピ名にレシピ詳細のリンク) -->
 		<p>レシピ一覧</p>
 		<table border="1">
 				<tr>
-					<th>レシピ名</th>
-					<th>作成者</th>
-				</tr>
+                <th>レシピ名</th>
+                <th>作成者</th>
+	            </tr>
 				<tr th:each="recipe:${recipes}">
-                    <td th:text="${recipe.name}"></td>
-                	<td th:text="${recipe.user.name}"></td>
-				</tr>			
+                	<td><a th:href="@{/recipes/detail(id=${recipe.id})}"
+						th:text="${recipe.name}"></a></td>
+               		<td th:text="${recipe.user.name}"></td>
+            	</tr>
 			</table>
+			
 	
 </body>
 </html>

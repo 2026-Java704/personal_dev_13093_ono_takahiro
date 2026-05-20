@@ -63,16 +63,30 @@ public class RecipeController {
 		return "recipes";
 	}
 
+	// レシピ詳細画面の表示
+	@GetMapping("/recipes/detail")
+	public String detail(@RequestParam Integer id, Model model) {
+		// idをもとにレシピ情報を取得
+		Recipe recipe = recipeRepository.findById(id).get();
+		model.addAttribute("recipe", recipe);
+
+		return "detailRecipe";
+	}
+
 	// 新規登録画面の表示
-	@GetMapping("/resipes/add")
-	public String create() {
+	@GetMapping("/recipes/add")
+	public String newRecipe(Model model) {
+		// 全カテゴリー一覧を取得
+		List<Category> categoryList = categoryRepository.findAll();
+		model.addAttribute("categories", categoryList);
+
 		return "addRecipe";
 	}
 
 	// 新規登録処理
 	@PostMapping("/recipes/add")
 	public String store(
-			@RequestParam(defaultValue = "") Integer categoryId,
+			@RequestParam(defaultValue = "") Category categoryId,
 			@RequestParam(defaultValue = "") String name,
 			@RequestParam(defaultValue = "") Integer userId,
 			@RequestParam(defaultValue = "") String recipes) {
