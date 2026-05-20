@@ -21,20 +21,26 @@
 			<tr>
 				<th>お名前</th>
 				<td>
-					<input type="text" name="name" th:value="${info.name}">
+					<input type="text" name="name" th:value="${name}">
 				</td>
 			</tr>
 			<tr>
-				<th>e-mail</th>
+				<th>メールアドレス</th>
 				<td>
-					<input type="text" name="email" th:value="${info.email}">
+					<input type="text" name="email" th:value="${email}">
 				</td>
 			</tr>
 			<tr>
-				<th>password</th>
+				<th>パスワード</th>
 				<td>
 					<input type="text" name="password">
 				</td>
+				<tr>
+					<th>パスワード（確認用）</th>
+					<td>
+						<input type="text" name="passwordConfirm">
+					</td>
+				</tr>
 			</tr>
 		</table>
 		<button>登録</button>

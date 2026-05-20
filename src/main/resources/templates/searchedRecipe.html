@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>レシピ検索結果</title>
+</head>
+<body>
+	<h1>レシピ検索結果</h1>
+    <p th:if="${recipes.size() == 0}">該当するレシピが見つかりませんでした。</p>
+    <table border="1" th:if="${recipes.size() > 0}">
+        <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>値段</th>
+            <th>更新</th>
+        </tr>
+        <tr th:each="recipe:${recipes}">
+            <td th:text="${recipe.id}"></td>
+            <td th:text="${recipe.name}"></td>
+            <td th:text="${recipe.userId}"></td>
+            <td>
+                <form th:action="'/recipes/'+${recipe.id}+'/edit'" method="get">
+                    <input type="submit" value="更新">
+                </form>
+            </td>
+        </tr>
+    </table>
+	
+	
+</body>
+</html>

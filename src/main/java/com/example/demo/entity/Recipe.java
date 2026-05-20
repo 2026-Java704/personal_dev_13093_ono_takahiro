@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,19 +20,23 @@ public class Recipe {
 
 	@Column(name = "category_id")
 	private Integer categoryId; // カテゴリーID
-	private Integer userId; // ユーザーID
 	private String name; // 料理名
 	private String recipe; // レシピ文
+
+	//Userテーブルとのリレーション
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	// コンストラクタ
 	public Recipe() {
 	}
 
-	public Recipe(Integer id, Integer categoryId, Integer userId, String name, String recipes) {
+	public Recipe(Integer id, Integer categoryId, User user, String name, String recipes) {
 		this.id = id;
 		this.categoryId = categoryId;
 		this.name = name;
-		this.userId = userId;
+		this.user = user;
 	}
 
 	public Recipe(Integer categoryId, String name, String recipe) {
@@ -70,15 +76,15 @@ public class Recipe {
 	/**
 	 * @return userId
 	 */
-	public Integer getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
 	/**
 	 * @param userId セットする userId
 	 */
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/**
@@ -107,6 +113,11 @@ public class Recipe {
 	 */
 	public void setRecipe(String recipes) {
 		this.recipe = recipes;
+	}
+
+	public void setUserName(String userName) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 }

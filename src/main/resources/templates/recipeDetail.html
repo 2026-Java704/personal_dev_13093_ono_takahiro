@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>トップページ/レシピ一覧</title>
+</head>
+<body>
+	<h1>トップページ</h1>
+		<!--　新規登録ボタン-->
+		<form action="/recipes/add" method="get">
+			<input type="submit" value="新規登録">
+			        </form>
+		<!-- レシピの検索フォーム -->
+		<form action="/recipes/search" method="get">
+            <input type="text" name="keyword" placeholder="レシピ名で検索">
+            <input type="submit" value="検索">
+       	</form>
+		<br>
+		<!-- カテゴリーボタン -->
+		<p>カテゴリ</p>
+		<form action="/recipes/search" method="get">
+			<button type="submit" name="category" value="丼もの">丼もの</button>
+			<button type="submit" name="category" value="麵類">麵類</button>
+	        <button type="submit" name="category" value="デザート">デザート</button>
+            <button type="submit" name="category" value="肉料理">肉料理</button>
+            <button type="submit" name="category" value="野菜">野菜</button>
+            <button type="submit" name="category" value="スープ">スープ</button>
+            <button type="submit" name="category" value="サラダ">サラダ</button>
+            <button type="submit" name="category" value="魚介">魚介</button>
+        	<button type="submit" name="category" value="パン">パン</button>
+            <button type="submit" name="category" value="鍋もの">鍋もの</button>
+            <button type="submit" name="category" value="粉もの">粉もの</button>
+            <button type="submit" name="category" value="和菓子">和菓子</button>
+			<button type="submit" name="category" value="その他">その他</button>
+        </form>
+		<br>
+		<!-- レシピの一覧を表示 -->
+		<p>レシピ一覧</p>
+	<table border="1">
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>更新</th>
+		</tr>
+		
+		<tr th:each="recipe:${recipes}">
+			<td th:text="${recipe.name}"></td>
+			<td th:text="${recipe.userId}"></td>
+			<td>
+				<form th:action="'/recipes/'+${recipe.id}+'/edit'" method="get">
+					<input type="submit" value="更新">
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

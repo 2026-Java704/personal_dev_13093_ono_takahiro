@@ -11,12 +11,9 @@ import jakarta.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id; // 顧客ID
-
-	private String name; // 名前
-
+	private Integer id; // ユーザーID
+	private String name; // ユーザー名
 	private String email; // メールアドレス
-
 	private String password; // パスワード
 
 	// コストラクタ

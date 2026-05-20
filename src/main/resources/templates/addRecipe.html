@@ -2,33 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>商品登録</title>
+<title>レシピ登録</title>
 </head>
 <body>
-	<h1>商品登録</h1>
+	<h1>レシピ登録</h1>
 
-	<form action="/items/add" method="post">
-		<table border="1">
-			<tr>
-				<th>カテゴリーID</th>
-				<td>
-					<input type="text" name="categoryId">
-				</td>
-			</tr>
-			<tr>
-				<th>商品名</th>
-				<td>
-					<input type="text" name="name">
-				</td>
-			</tr>
-			<tr>
-				<th>値段</th>
-				<td>
-					<input type="text" name="price">
-				</td>
-			</tr>
-		</table>
-		<input type="submit" value="登録">
-	</form>
+	<form action="/recipes/add" method="post">
+        <table border="1">
+            <tr>
+                <th>レシピ名</th>
+                <td>
+                    <input type="text" name="name">
+                </td>
+            </tr>
+            <tr>
+                <th>カテゴリー</th>
+                <td>
+                    <input type="text" name="category">
+                </td>
+            </tr>
+            <tr>
+                <th>作り方</th>
+                <td>
+                    <textarea name="recipe"></textarea>
+                </td>
+            </tr>
+         </table>
+         <input type="submit" value="登録">
 </body>
 </html>

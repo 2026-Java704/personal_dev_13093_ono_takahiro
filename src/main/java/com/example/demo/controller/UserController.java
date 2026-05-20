@@ -80,6 +80,7 @@ public class UserController {
 			@RequestParam String name,
 			@RequestParam String email,
 			@RequestParam String password,
+			@RequestParam String passwordConfirm,
 			Model model) {
 
 		// エラーチェック
@@ -96,8 +97,20 @@ public class UserController {
 			// 登録済みのメールアドレスが存在した場合
 			errorList.add("登録済みのメールアドレスです");
 		}
+		// パスワードが空の場合にエラーとする
 		if (password.length() == 0) {
 			errorList.add("パスワードは必須です");
+		}
+		// パスワードの文字数チェック
+		if (password.length() > 0 && password.length() < 7) {
+			errorList.add("パスワードは7文字以上で入力してください");
+		}
+		if (password.length() > 255) {
+			errorList.add("パスワードは255文字以下で入力してください");
+		}
+		//パスワードとパスワード（確認）が一致するか
+		if (!password.equals(passwordConfirm)) {
+			errorList.add("パスワードとパスワード（確認用）が一致しません");
 		}
 
 		// エラー発生時はお問い合わせフォームに戻す
