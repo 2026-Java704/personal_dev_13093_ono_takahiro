@@ -1,24 +1,25 @@
 /* 全体 */
 body {
-	background-color: #EFF0F7; /* 背景色  */
+	background-color: rgb(255, 255, 255); /* 背景色  */
 	text-align: center; /* 中央寄せ */
     min-width: 900px; /* 最小幅 */
 }
 /* ヘッダー、ナビゲーションメニュー、フッター */
-header, nav, footer {
-	background-color: #45496a; /* 背景色 */
-	color: #ffffff; /* 文字色 */
+header{
+	background-color: rgb(255, 255, 255); /* 背景色 */
+	color: rgb(0, 0, 0); /* 文字色 */
 	padding-top: 5px; /* 内側余白(上) */
 	padding-bottom: 5px; /* 内側余白(下) */
 }
 /* ヘッダー、ナビゲーション内リンク */
 header a, nav a {
-	color: #ffffff;
+	color: rgb(128, 0, 0);
 }
 /* ヘッダー内見出し */
 header h1 {
 	font-size: 20pt;
 	margin: 10px auto;
+	color: rgb(0, 0, 0); /* 文字色 */
 }
 
 /* 仕切り線 */
@@ -27,7 +28,7 @@ hr {
 }
 /* メイン */
 main {
-	background-color: #FFFFFF;
+	background-color: rgb(255, 128, 128);
 	min-height: 50px;
 	padding: 20px;
 }
@@ -40,11 +41,12 @@ table, th, td {
 table {
     margin: 5px auto;
     min-width: 800px;
+	color: rgb(0, 0, 0);
 }
 /* 表見出しセル */
 table th {
 	background: #7d8bae;
-	color: #ffffff;
+	color: rgb(0, 0, 0);
 }
 /* 送信ボタン */
 button {
@@ -56,7 +58,33 @@ button {
 	width:150px;
 	cursor: pointer;
 }
+.btn {	
+				   display: inline-block;
+				   justify-content: center;
+				   align-items: center;
+				   text-decoration: none; 
+				   width: 80px;
+				   margin: 0 auto;
+				   padding: 10px 20px;
+				   border: none;
+				   border-radius: 5px;
+				   background-image: linear-gradient(0deg, #ff961f 0%, #ff961f80 100%);
+				   color: #fff;
+				   font-weight: 600;
+				   font-size: 1em;
+			  }
+
+btn:hover {
+background-color: #0056b3;
+}
 /* 送信ボタン(マウスオーバー時) */
 button:hover {
 	background-color: #f1b2b2;
+}
+.heading-23 {
+    padding: .5em .7em;
+    border-left: 5px solid #2589d0;
+    border-bottom: 3px solid #d2d2d2;
+    background-color: #f2f2f2;
+    color: #333333;
 }

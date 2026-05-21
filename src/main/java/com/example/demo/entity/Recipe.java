@@ -64,8 +64,8 @@ public class Recipe {
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(String name) {
+		this.name = name;
 	}
 
 	public String getName() {
@@ -77,10 +77,15 @@ public class Recipe {
 	}
 
 	public String getRecipe() {
-		return recipe;
+		return recipe.replaceAll("\n", "<br>");
 	}
 
 	public void setRecipe(String recipe) {
 		this.recipe = recipe;
+	}
+
+	public void setUser(User loginUser) {
+		// TODO 自動生成されたメソッド・スタブ
+		this.user = loginUser;
 	}
 }

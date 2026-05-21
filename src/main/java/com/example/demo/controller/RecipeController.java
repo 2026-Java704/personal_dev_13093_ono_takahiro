@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Recipe;
 import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.RecipeRepository;
 import com.example.demo.repository.UserRepository;
@@ -21,16 +24,19 @@ public class RecipeController {
 	private final RecipeRepository recipeRepository;
 	private final UserRepository userRepository;
 	private final CategoryRepository categoryRepository;
+	private final Account account;
+	private final HttpSession session;
 
 	public RecipeController(RecipeRepository recipeRepository, UserRepository userRepository,
-			CategoryRepository categoryRepository) {
+			CategoryRepository categoryRepository, Account account, HttpSession session) {
 		this.recipeRepository = recipeRepository;
 		this.userRepository = userRepository;
 		this.categoryRepository = categoryRepository;
-
+		this.account = account;
+		this.session = session;
 	}
 
-	// 商品一覧表示
+	// レシピ一覧表示
 	@GetMapping("/recipes")
 	public String index1(
 			@RequestParam(defaultValue = "") Integer categoryId,
@@ -85,18 +91,21 @@ public class RecipeController {
 
 	// 新規登録処理
 	@PostMapping("/recipes/add")
-	public String store(
-			@RequestParam(defaultValue = "") Category categoryId,
-			@RequestParam(defaultValue = "") String name,
-			@RequestParam(defaultValue = "") Integer userId,
-			@RequestParam(defaultValue = "") String recipes) {
+	public String create(
+			@RequestParam Integer categoryId,
+			@RequestParam String name,
+			@RequestParam String recipe) {
 
-		// Recipeオブジェクトの生成
-		Recipe recipe = new Recipe(categoryId, name, recipes);
-		// recipeテーブルへの反映（INSERT）
-		recipeRepository.save(recipe);
-		// 「/recipes」にGETでリクエストし直せ（リダイレクト）
+		Category category = categoryRepository.findById(categoryId).get();
+
+		Recipe newRecipe = new Recipe(category, name, recipe);
+
+		User loginUser = userRepository.findById(account.getId()).get();
+
+		newRecipe.setUser(loginUser);
+
+		recipeRepository.save(newRecipe);
+
 		return "redirect:/recipes";
 	}
-
 }
