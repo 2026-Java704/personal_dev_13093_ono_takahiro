@@ -3,33 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <title>トップページ/レシピ一覧</title>
+<style>
+    /* h1タグのフォントスタイルを変更 */
+    h1 {
+        font-family: "Courier", "Helvetica", sans-serif; /* フォント種類 */
+        font-size: 50px; /* フォントサイズ */
+        font-weight: bold; /* 太字 */
+        color: rgb(128, 0, 0); /* 文字色 */
+        text-align: center; /* 中央揃え */
+        letter-spacing: 2px; /* 文字間隔 */
+    }
+	table-design {
+		color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		border-collapse: collapse;
+	  }
+	  
+	  th, td {
+	    padding: 10px;
+	    text-align: left;
+	    border-bottom: 1px solid #ddd;
+	  }
+	  tr:hover {
+	    background-color: #f2f9ff;
+	  }
+</style>
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 	<header th:replace="~{header}"></header>
 	<hr>
 	<nav>
-	<h1>CookGood!!</h1>
+	<h1>CookGood</h1>
 		<!--　新規登録ボタン-->
-		<form action="/recipes/add" method="get">
-			<input type="submit" value="新規登録">
-			        </form>
+		<form action="/recipes/add" method="get" >
+		<button class="button-29">レシピを投稿する</button>
+		</form>
+		
 		<!-- レシピの検索フォーム -->
-		<form action="/recipes" method="get">
-            <input type="text" name="keyword" placeholder="レシピ名で検索">
-            <input type="submit" value="検索">
-		<br>
+		<form action="/recipes" method="get" class="search-form-2">
+		    <label>
+		        <input type="text" name="keyword" placeholder="キーワードを入力" th:value="${keyword}">
+		    </label>
+		    <button type="submit" aria-label="検索"></button>
+		</form>
 		<!-- カテゴリー検索 -->
 		<p>カテゴリ</p>
-		<a href="/recipes" class="btn">全カテゴリ</a>
-		<a th:each="category:${categories}"
-	       th:href="@{/recipes(categoryId=${category.id})}"
-	       th:text="${category.name}"
-	       style="margin-right: 5px;"class="btn"></a>
-		<br>
+		<div class="category-grid">
+			<a href="/recipes" class="btn">全カテゴリ</a>
+			<a th:each="category:${categories}"
+		       th:href="@{/recipes(categoryId=${category.id})}"
+		       th:text="${category.name}"
+		       style="margin-right: 5px;"class="btn"></a>
+	   </div>
 		<!-- レシピの一覧を表示(レシピ名にレシピ詳細のリンク) -->
 		<p>レシピ一覧</p>
-		<table border="1">
+		<div class="table-design">
+		<table bgcolor="#f9f9f9" class="tableback">
 				<tr>
                 <th>レシピ名</th>
                 <th>作成者</th>
@@ -38,8 +71,9 @@
                 	<td><a th:href="@{/recipes/detail(id=${recipe.id})}"
 						th:text="${recipe.name}"></a></td>
                		<td th:text="${recipe.user.name}"></td>
-            	</tr>
+            	</tr >
 			</table>
-	
+	    </div>
+<footer th:replace="~{footer}"></footer>
 </body>
 </html>

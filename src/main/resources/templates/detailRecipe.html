@@ -3,23 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <title>レシピ詳細</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<style>
+    /* h1タグのフォントスタイルを変更 */
+    h1 {
+        font-family: "Courier", "Helvetica", sans-serif; /* フォント種類 */
+        font-size: 50px; /* フォントサイズ */
+        font-weight: bold; /* 太字 */
+        color: rgb(128, 0, 0); /* 文字色 */
+        text-align: center; /* 中央揃え */
+        letter-spacing: 2px; /* 文字間隔 */
+    }
+    .box-012 {
+        color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		background-color: #fff;
+        border-collapse: collapse;
+      }
+	  p {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+	  </style>
 </head>
 <body>
 	<h1>レシピ詳細</h1>
-        <p class="heading-23" >レシピ名: <span th:text="${recipe.name}"></span></p>
-		<p>カテゴリー: <span th:text="${recipe.category.name}"></span></p>
-    	<p>作り方: <span th:utext="${recipe.recipe}"></span></p>
+        
+		<div class="box-012" >
+		    <span th:text="${recipe.name}">レシピ名</span>
+		    <p th:utext="${recipe.recipe}">作り方:</p>
+		</div>
 		
-		
-		<style>
-          .heading-23 {
-			    padding: .5em .7em;
-			    border-left: 5px solid #2589d0;
-			    border-bottom: 3px solid #d2d2d2;
-			    background-color: #f2f2f2;
-			    color: #333333;
-				}
-		  </style>
+		<!-- 削除ボタン -->
+		<form th:action=
+		         "@{/recipes/{id}/delete(id=${recipe.id})}"
+                method="post"
+                onsubmit="return confirm('このレシピを削除しますか？');">
+                <button type="submit">削除</button>
 	</body>
 </html>

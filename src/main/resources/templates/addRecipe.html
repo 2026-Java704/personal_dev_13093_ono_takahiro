@@ -3,21 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <title>レシピ登録</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 	<h1>レシピ登録</h1>
 	<form action="/recipes/add" method="post">
-        <p>レシピ名</p>
-        <input type="text" name="name">
-        <p>カテゴリー</p>
-        <select name="categoryId">
-            <option value="">選択してください</option>
-            <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
-        </select>
-		<p>作り方</p>
-		        <textarea name="recipe" rows="5" cols="30"></textarea>
-        <br><br>
-        <input type="submit" value="登録">
-    </form>
+	  <div class="form-row">
+	    <div class="form-label">
+	      <label for="name">レシピ名</label>
+	      <span>必須</span>
+	    </div>
+	    <input type="text" id="name" name="name" placeholder="タイトル" required>
+	  </div>
+	  
+	  <div class="form-row">
+	    <div class="form-label">
+	      <label for="pet-select">カテゴリ</label>
+	    </div>
+	     <select name="categoryId">
+	      <option value="">--選択してください--</option>
+	      <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+	    </select>
+	  </div>
+	  <div class="form-row">
+	    <div class="form-label">
+	      <label for="message">作り方</label>
+	      <span>必須</span>
+	    </div>
+	    <textarea id="message" name="recipe" rows="5"placeholder="作り方をこちらにご記入ください" required></textarea>
+	  </div>
+	  <div class="form-row">
+	    <div class="form-label"></div>
+	    <button type="submit">送信</button>
+	  </div>
+	</form>
 	</body>
 </html>

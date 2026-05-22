@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -33,5 +35,10 @@ public class Account {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Integer getLoginUserId(HttpSession session) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 }

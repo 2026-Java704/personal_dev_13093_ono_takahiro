@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -99,13 +100,28 @@ public class RecipeController {
 		Category category = categoryRepository.findById(categoryId).get();
 
 		Recipe newRecipe = new Recipe(category, name, recipe);
+		//ログインしていなかったら、ユーザーIDは1（ゲストユーザー）にする
+		Integer userId = account.getLoginUserId(session);
+		if (userId == null) {
+			newRecipe.setUser(userRepository.findById(1).get());
+		} else {
+			User loginUser = userRepository.findById(account.getId()).get();
+			newRecipe.setUser(loginUser);
 
-		User loginUser = userRepository.findById(account.getId()).get();
-
-		newRecipe.setUser(loginUser);
-
+		}
+		// recipesテーブルへの反映（INSERT）
 		recipeRepository.save(newRecipe);
+		// 「/recipes」にGETでリクエストし直す（リダイレクト）
+		return "redirect:/recipes";
 
+	}
+
+	//削除処理
+	@PostMapping("/recipes/{id}/delete")
+	public String delete(@PathVariable Integer id) {
+		//recipesテーブルから削除
+		recipeRepository.deleteById(id);
+		//[/recipes]にGETでリダイレクト
 		return "redirect:/recipes";
 	}
 }

@@ -3,48 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <title>会員登録</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-	<header>
-		<h1>レシピサイト</h1>
-	</header>
-	<hr>
-	<main>
-		<h3>ユーザ情報</h3>
-		<form action="/account" method="post">
+	<div class="form-wrapper">
+		  <h1>ユーザ情報登録</h1>
+		  <form action="/account" method="post">
 			<div th:if="${errorList}">
-				<div th:each="error:${errorList}" th:text="${error}"></div>
+							<div th:each="error:${errorList}" th:text="${error}"></div>
 			</div>
-
-			<table border="1">
-			<tr>
-				<th>お名前</th>
-				<td>
-					<input type="text" name="name" th:value="${name}">
-				</td>
-			</tr>
-			<tr>
-				<th>メールアドレス</th>
-				<td>
-					<input type="text" name="email" th:value="${email}">
-				</td>
-			</tr>
-			<tr>
-				<th>パスワード</th>
-				<td>
-					<input type="text" name="password">
-				</td>
-				<tr>
-					<th>パスワード（確認用）</th>
-					<td>
-						<input type="text" name="passwordConfirm">
-					</td>
-				</tr>
-			</tr>
-		</table>
-		<button>登録</button>
-	</main>
-	<hr>
-</body>
+			<div class="form-item">
+		    
+		      <label for="name"></label>
+		      <input type="name" name="name" required="required" placeholder="お名前"></input>
+		    </div>
+		    <div class="form-item">
+		    
+		      <label for="email"></label>
+		      <input type="email" name="email" required="required" placeholder="メールアドレス"></input>
+		    </div>
+		    <div class="form-item">
+		      <label for="password"></label>
+		      <input type="password" name="password" required="required" placeholder="パスワード"></input>
+		    </div>
+			<div class="form-item">
+		      <label for="password"></label>
+		      <input type="password" name="passwordConfirm" required="required" placeholder="パスワード（確認用）"></input>
+		    </div>
+		    <div class="button-panel">
+		      <input type="submit" class="button" title="Sign In" value="登録"></input>
+		    </div>
+		  </form>
+		  <div class="form-footer"> 
+	  	  </div>
+		</div>
+</body1>
 </html>

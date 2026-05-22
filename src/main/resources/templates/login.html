@@ -3,22 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-	<header>
-		<h1>CookGood!!</h1>
-	</header>
-	<main>
-		<form action="/login" method="post">
-			<input type="text" name="email" placeholder="メールアドレス"><br>
-			<input type="text" name="password" placeholder="パスワード"><br>
-			<button>ログイン</button>
-			<br> <span th:text="${message}" style="color: red"></span>
-		</form>
-		<br>
-		<a th:href="@{/account}">新規会員登録はこちら</a>
-	</main>
-	
+	<div class="form-wrapper">
+	  <h1>サインイン</h1>
+	  <form action="/login" method="post">
+	    <div class="form-item">
+	    
+	      <label for="email"></label>
+	      <input type="email" name="email" required="required" placeholder="メールアドレス"></input>
+	    </div>
+	    <div class="form-item">
+	      <label for="password"></label>
+	      <input type="password" name="password" required="required" placeholder="パスワード"></input>
+	    </div>
+	    <div class="button-panel">
+	      <input type="submit" class="button" title="Sign In" value="Sign In"></input>
+		  <span th:text="${message}" style="color: red"></span>
+	    </div>
+	  </form>
+	  <div class="form-footer">
+	    <p><a th:href="@{/account}">Create an account</a></p>
+	    
+	  </div>
+	</div>
 </body>
 </html>

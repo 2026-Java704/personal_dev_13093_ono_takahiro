@@ -5,11 +5,11 @@ body {
     min-width: 900px; /* 最小幅 */
 }
 /* ヘッダー、ナビゲーションメニュー、フッター */
-header{
-	background-color: rgb(255, 255, 255); /* 背景色 */
+header nav, footer {
+	background-color:#e9e9e9; /* 背景色 */
 	color: rgb(0, 0, 0); /* 文字色 */
 	padding-top: 5px; /* 内側余白(上) */
-	padding-bottom: 5px; /* 内側余白(下) */
+	padding-bottom: 50px; /* 内側余白(下) */
 }
 /* ヘッダー、ナビゲーション内リンク */
 header a, nav a {
@@ -26,26 +26,30 @@ header h1 {
 hr {
 	border-top: 2px dashed #7d8bae;
 }
+
 /* メイン */
 main {
 	background-color: rgb(255, 128, 128);
 	min-height: 50px;
 	padding: 20px;
 }
-/* 表線 */
+
+ 表線 
 table, th, td {
 	border-collapse: collapse;
 	border: 1px solid #7d8bae;
 }
-/* 表 */
+
+ 表 
 table {
     margin: 5px auto;
     min-width: 800px;
 	color: rgb(0, 0, 0);
 }
-/* 表見出しセル */
+
+ 表見出しセル 
 table th {
-	background: #7d8bae;
+	background: #8e8e8e;
 	color: rgb(0, 0, 0);
 }
 /* 送信ボタン */
@@ -59,23 +63,31 @@ button {
 	cursor: pointer;
 }
 .btn {	
-				   display: inline-block;
-				   justify-content: center;
-				   align-items: center;
-				   text-decoration: none; 
-				   width: 80px;
-				   margin: 0 auto;
-				   padding: 10px 20px;
-				   border: none;
-				   border-radius: 5px;
-				   background-image: linear-gradient(0deg, #ff961f 0%, #ff961f80 100%);
-				   color: #fff;
-				   font-weight: 600;
-				   font-size: 1em;
-			  }
+	   display: inline-block;
+	   justify-content: center;
+	   align-items: center;
+	   text-decoration: none; 
+	   width: 110px;
+	   margin: 0 auto;
+	   padding: 10px 20px;
+	   border: none;
+	   border-radius: 5px;
+	   background-image: linear-gradient(0deg, #ff961f 0%, #ff961f80 100%);
+	   color: #fff;
+	   font-weight: 600;
+	   font-size: 1em;
+	   
+  }
+  .category-grid {
+	  margin: 10px 240px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr); /* 7x2 固定 */
+      gap: 10px 10px; /* 行間・列間の余白 */
+      width: 200px; /* 必要なら調整 */
+  }
 
-btn:hover {
-background-color: #0056b3;
+.btn:hover {
+background-color: rgb(83, 45, 13);
 }
 /* 送信ボタン(マウスオーバー時) */
 button:hover {
@@ -88,3 +100,314 @@ button:hover {
     background-color: #f2f2f2;
     color: #333333;
 }
+.search-form-2 {
+	    margin: 20px auto;
+    display: flex;
+	justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.search-form-2 input {
+    width: 250px;
+    height: 45px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    box-sizing: border-box;
+    background-color: rgb(252, 252, 252);
+    font-size: 1em;
+    outline: none;
+}
+
+.search-form-2 input::placeholder {
+    color: #777777;
+}
+
+.search-form-2 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 45px;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    background-color: #ff780a;
+    cursor: pointer;
+}
+
+.search-form-2 button::after {
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z' fill='%23fff'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+	background-size: 20px 20px;
+    content: '';
+}
+
+.button-29 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 250px;
+    margin:0 auto;
+    padding: .9em 2em;
+    overflow: hidden;
+    border: 1px solid #f98a0b;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #f98a0b;
+    font-size: 1em;
+}
+
+.button-29:hover {
+    background-color: transparent;
+    color: #fff;
+}
+
+.button-29::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 0;
+    height: 100%;
+    background-color: #f98a0b;
+    content: '';
+    transition: width .3s ease;
+}
+
+.button-29:hover::before {
+    width: 100%;
+}
+
+.button-29::after {
+    transform: rotate(45deg);
+    width: 5px;
+    height: 5px;
+    margin-left: 10px;
+    border-top: 2px solid #f98a0b;
+    border-right: 2px solid #f98a0b;
+    content: '';
+}
+
+.button-29:hover::after {
+    border-color: #fff;
+}
+
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
+
+/* fontawesome */
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* Simple Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* body */
+body {
+  background: #e9e9e9;
+  color: #5e5e5e;
+  font: 400 87.5%/1.5em 'Open Sans', sans-serif;
+}
+
+/* Form Layout */
+.form-wrapper {
+  background: #fafafa;
+  margin: 3em auto;
+  padding: 0 1em;
+  max-width: 370px;
+}
+
+h1 {
+  text-align: center;
+  padding: 1em 0;
+}
+
+form {
+  padding: 0 1.5em;
+}
+
+.form-item {
+  margin-bottom: 0.75em;
+  width: 100%;
+}
+
+.form-item input {
+  background: #fafafa;
+  border: none;
+  border-bottom: 2px solid #e9e9e9;
+  color: #666;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  height: 50px;
+  transition: border-color 0.3s;
+  width: 100%;
+}
+
+.form-item input:focus {
+  border-bottom: 2px solid #c0c0c0;
+  outline: none;
+}
+
+.button-panel {
+  margin: 2em 0 0;
+  width: 100%;
+}
+
+.button-panel .button {
+  background: rgb(255, 128, 0);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.3s ease-in-out;
+  width: 100%;
+}
+
+.button:hover {
+  background: #ee3e52;
+}
+
+.form-footer {
+  font-size: 1em;
+  padding: 2em 0;
+  text-align: center;
+}
+
+.form-footer a {
+  color: #8c8c8c;
+  text-decoration: none;
+  transition: border-color 0.3s;
+}
+
+.form-footer a:hover {
+  border-bottom: 1px dotted #8c8c8c;
+}
+
+.tableback {
+  width: 50%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.textbox-2-label,
+.textbox-2 {
+    color: #333;
+}
+
+.textbox-2-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: .9em;
+}
+
+.textbox-2 {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d2d2d2;
+    border-radius: 25px;
+    background: #dedede;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.textbox-2::placeholder {
+    color: #999;
+}
+/* レイアウト */
+form {
+  width: 70%;
+  margin: 0 auto;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f2f4f5;
+}
+.form-row:last-child {
+  border-bottom: none;
+}
+.form-label {
+  display: flex;
+  align-items: center;
+  width: 250px;
+}
+.form-label label {
+  font-weight: bold;
+}
+.form-label span {
+  margin-left: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #166ab5;
+}
+
+/* フォームパーツのデザイン */
+input, textarea {
+  background-color: #f2f4f5;
+  border: none;
+  border-radius: 3px;
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #333;
+  flex-grow: 1;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #999;
+  font-size: 14px;
+}
+select {
+  background-color: #f2f4f5;
+  border: none;
+  border-radius: 3px;
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #333;
+}
+.box-012 {
+    max-width: 400px;
+    margin: 0 auto;
+    border: 2px solid #f09328;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.box-012 span {
+    padding: .4em .8em;
+    background-color: #f09328;
+    color: #fff;
+}
+
+.box-012 p {
+    margin: 0;
+    padding: 1em 1.5em;
+    color: #333;
+}
+/*button2 {*/
+/*  cursor: pointer;*/
+/*  margin-top: 30px;*/
+/*  padding: 15px 45px;*/
+/*  border: none;*/
+/*  border-radius: 3px;*/
+/*  color: #fff;*/
+/*  font-weight: bold;*/
+/*  background-color: #166ab5;*/
+/*}*/
