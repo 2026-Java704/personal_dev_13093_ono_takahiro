@@ -18,16 +18,21 @@
         color: #f9f9f9;
         border: 1px solid #ddd;
         border-radius: 5px;
-        padding: 20px;
+        padding: 15px 30px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 		background-color: #fff;
         border-collapse: collapse;
+		max-width: 650px;
+		max-height: 500px;
       }
 	  p {
-        padding: 10px;
-        text-align: left;
+        padding: 100px;
+		text-align: left; /* 左寄せ */
         border-bottom: 1px solid #ddd;
+		max-width: 1000px;
+		max-height: 500px;
       }
+	  
 	  </style>
 </head>
 <body>
@@ -37,12 +42,28 @@
 		    <span th:text="${recipe.name}">レシピ名</span>
 		    <p th:utext="${recipe.recipe}">作り方:</p>
 		</div>
-		
+		<br>
 		<!-- 削除ボタン -->
-		<form th:action=
-		         "@{/recipes/{id}/delete(id=${recipe.id})}"
+		<form th:if="${recipe.user.id == account.id}"
+		th:action="@{/recipes/{id}/delete(id=${recipe.id})}"
                 method="post"
                 onsubmit="return confirm('このレシピを削除しますか？');">
                 <button type="submit">削除</button>
+        </form>
+		<!-- 編集ボタン -->
+		<!-- ログインしていないとき＆他人のレシピの場合だけ警告表示 -->
+		<div th:if="${account != null and recipe.user.id != account.id}">
+		    <a style="color:red; font-weight:bold;">
+		        ※このレシピは他のユーザーが投稿したものです。削除・編集はできません。
+		    </a>
+		</div>
+
+		<!-- 編集ボタン（自分のレシピのときだけ表示） -->
+		<form th:if="${recipe.user.id == account.id}"
+		      th:action="@{/recipes/{id}/edit(id=${recipe.id})}"
+		      method="get">
+		    <button type="submit">編集する</button>
+		</form>
 	</body>
 </html>
+		

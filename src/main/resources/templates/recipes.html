@@ -3,16 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <title>トップページ/レシピ一覧</title>
+<style type="text/css">
+   a.widelink { display: block; }
+</style>
 <style>
     /* h1タグのフォントスタイルを変更 */
-    h1 {
-        font-family: "Courier", "Helvetica", sans-serif; /* フォント種類 */
-        font-size: 50px; /* フォントサイズ */
+    h1{
+		font-family: "Courier", "Helvetica", sans-serif; /* フォント種類 */
+        font-size: 70px; /* フォントサイズ */
         font-weight: bold; /* 太字 */
         color: rgb(128, 0, 0); /* 文字色 */
         text-align: center; /* 中央揃え */
         letter-spacing: 2px; /* 文字間隔 */
-    }
+	}
+	.purun:hover {
+		font-family: "Courier", "Helvetica", sans-serif; /* フォント種類 */
+        font-size: 70px; /* フォントサイズ */
+        font-weight: bold; /* 太字 */
+        color: rgb(128, 0, 0); /* 文字色 */
+        text-align: center; /* 中央揃え */
+        letter-spacing: 2px; /* 文字間隔 */
+	  	animation: purun 0.8s linear 0s 1;
+	}
+
+	@keyframes purun {
+	  0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+	  15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+	  30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+	  50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+	  70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+	  100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+	}
+
 	table-design {
 		color: #f9f9f9;
         border: 1px solid #ddd;
@@ -20,16 +42,145 @@
         padding: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 		border-collapse: collapse;
+		
 	  }
-	  
-	  th, td {
+	  th{
+		text-align: center;
+		padding: 10px;
+	  }
+	  td {
 	    padding: 10px;
 	    text-align: left;
 	    border-bottom: 1px solid #ddd;
+		
 	  }
 	  tr:hover {
 	    background-color: #f2f9ff;
 	  }
+	  @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+	  body {
+	  	background: #fafafa;
+	  	background-attachment: fixed;
+	  	color: #555;
+	  	font-family: 'Raleway', Helvetica, Arial, sans-serif;
+	  	font-size: 18px;
+	  	font-weight: 300;
+	  	line-height: 140%;
+	  	margin: 0;
+	  	height: 100%;
+	  	padding: 0;
+	  	text-align: center;
+	  	width: 100%;
+		
+	  }
+	  .page_title {
+	  	color: #0af;
+	  	border-bottom: 1px solid rgba(0,0,0,.05);
+	  	font-weight: 300;
+	  	margin: 0;
+	  	padding: 20px 0;
+	  	text-shadow: 0 1px 1px rgba(0,0,0,.1);
+	  	text-transform: uppercase;
+	  }
+
+	  /* PEN STYLES ========== */
+	  .menu,
+	  .menu .menu_title,
+	  .menu ul li a,
+	  .menu ul li a:after,
+	  .menu ul li a:before {
+	  	-webkit-transition: all 300ms ease-in-out;
+	  	transition: all 300ms ease-in-out;
+	  }
+	  .menu {
+	  	border-bottom: 1px solid rgba(0,0,0,.05);
+	  	border-top: 1px solid #fff;
+	  	margin: 0;
+	  	padding: 60px 0;
+	  }
+	  .menu:hover {
+	  	background: #fff;
+	  	border-bottom: 1px solid rgba(0,0,0,.2);
+	  }
+	  
+	  .menu .menu_title {
+	  	color: #ccc;
+	  	font-size: 1.5em;
+	  	font-weight: 300;
+	  	margin: 0 0 20px;
+	  }
+	  .menu:hover .menu_title {
+	  	color: #Fa0;
+	  	text-shadow: 0 1px 1px rgba(0,0,0,.1);	
+	  }
+	  .menu ul {
+	  	display: block;
+	  	list-style: none;
+	  	margin: 0;
+	  	padding: 0;
+	  }
+	  .menu ul li {
+	  	display: inline-block;
+	  }
+	  .menu ul li a {
+	  	color: #555;
+	  	display: block;
+	  	line-height: 50px;
+	  	padding: 0 30px;
+	  	text-decoration: none;
+	  }	.menu.effect-03 a {
+	    position: relative;
+	    display: inline-block;
+	    padding: 0 10px; /* 文字の左右に少し余白 */
+	}
+
+	/* 左の [ */
+	.menu.effect-03 a:before {
+	    content: '[';
+		color: #fa0;
+	    position: absolute;
+	    left: 0;          /* ← 文字のすぐ左 */
+	    opacity: 0;
+	    transform: translateX(-8px); /* 少し外側に置く */
+	    transition: all 0.3s ease;
+	}
+
+	/* 右の ] */
+	.menu.effect-03 a:after {
+	    content: ']';
+		color: #fa0;
+	    position: absolute;
+	    right: 0;         /* ← 文字のすぐ右 */
+	    opacity: 0;
+	    transform: translateX(8px); /* 少し外側に置く */
+	    transition: all 0.3s ease;
+	}
+
+	/* ホバー時に寄ってくる */
+	.menu.effect-03 a:hover:before {
+	    opacity: 1;
+	    transform: translateX(0);
+	}
+
+	.menu.effect-03 a:hover:after {
+	    opacity: 1;
+	    transform: translateX(0);
+	}
+
+		.category-row {
+			font-size: 23px;
+		    display: grid;
+		    grid-template-columns: repeat(7, auto); /* 横7列 */
+		    justify-content: center; /* 中央寄せ */
+		    gap: 10px; /* 間隔だけ */
+		}
+
+		.category-row a {
+		    text-decoration: none;
+		    color: #555;
+		    padding: 5px 10px;
+		}
+
 </style>
 <link rel="stylesheet" href="/style.css">
 </head>
@@ -37,7 +188,7 @@
 	<header th:replace="~{header}"></header>
 	<hr>
 	<nav>
-	<h1>CookGood</h1>
+	<h1 class="purun">CookGood</h1>
 		<!--　新規登録ボタン-->
 		<form action="/recipes/add" method="get" >
 		<button class="button-29">レシピを投稿する</button>
@@ -50,15 +201,21 @@
 		    </label>
 		    <button type="submit" aria-label="検索"></button>
 		</form>
-		<!-- カテゴリー検索 -->
+		<!-- カテゴリーフィルタ -->
+		
 		<p>カテゴリ</p>
-		<div class="category-grid">
-			<a href="/recipes" class="btn">全カテゴリ</a>
-			<a th:each="category:${categories}"
-		       th:href="@{/recipes(categoryId=${category.id})}"
-		       th:text="${category.name}"
-		       style="margin-right: 5px;"class="btn"></a>
-	   </div>
+
+		<div class="menu effect-03">
+
+		    <div class="category-row"style="margin: 1px;">
+				<a href="/recipes" style="margin: 10px;">すべて</a>
+		        <a th:each="category : ${categories}"
+		           th:href="@{/recipes(categoryId=${category.id})}"
+		           th:text="${category.name}"style="margin: 10px;">
+		        </a>
+		    </div>
+		</div>
+		
 		<!-- レシピの一覧を表示(レシピ名にレシピ詳細のリンク) -->
 		<p>レシピ一覧</p>
 		<div class="table-design">
@@ -69,7 +226,7 @@
 	            </tr>
 				<tr th:each="recipe:${recipes}">
                 	<td><a th:href="@{/recipes/detail(id=${recipe.id})}"
-						th:text="${recipe.name}"></a></td>
+						th:text="${recipe.name}"class="widelink"></a></td>
                		<td th:text="${recipe.user.name}"></td>
             	</tr >
 			</table>

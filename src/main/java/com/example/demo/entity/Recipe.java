@@ -80,6 +80,10 @@ public class Recipe {
 		return recipe.replaceAll("\n", "<br>");
 	}
 
+	public String getEditRecipe() {
+		return recipe;
+	}
+
 	public void setRecipe(String recipe) {
 		this.recipe = recipe;
 	}

@@ -76,6 +76,7 @@ public class RecipeController {
 		// idをもとにレシピ情報を取得
 		Recipe recipe = recipeRepository.findById(id).get();
 		model.addAttribute("recipe", recipe);
+		model.addAttribute("account", account);
 
 		return "detailRecipe";
 	}
@@ -113,15 +114,81 @@ public class RecipeController {
 		recipeRepository.save(newRecipe);
 		// 「/recipes」にGETでリクエストし直す（リダイレクト）
 		return "redirect:/recipes";
-
 	}
 
-	//削除処理
-	@PostMapping("/recipes/{id}/delete")
-	public String delete(@PathVariable Integer id) {
-		//recipesテーブルから削除
-		recipeRepository.deleteById(id);
-		//[/recipes]にGETでリダイレクト
+	// 編集画面表示
+	@GetMapping("/recipes/{id}/edit")
+	public String edit(@PathVariable Integer id, Model model) {
+
+		// 1. 未ログインならログイン画面へ（または一覧へリダイレクト）
+		if (account.getId() == null) {
+			return "login";
+		}
+
+		Recipe recipe = recipeRepository.findById(id).get();
+		List<Category> categories = categoryRepository.findAll();
+
+		// 2. 投稿者とログインユーザーが一致しない場合は一覧に弾く
+		if (!recipe.getUser().getId().equals(account.getId())) {
+			return "redirect:/recipes";
+		}
+
+		model.addAttribute("recipe", recipe);
+		model.addAttribute("categories", categories);
+
+		return "editRecipe";
+	}
+
+	// レシピの更新処理
+	@PostMapping("/recipes/{id}/edit")
+	public String update(
+			@PathVariable Integer id,
+			@RequestParam Integer categoryId,
+			@RequestParam(defaultValue = "") String name,
+			@RequestParam(defaultValue = "") String recipe) {
+
+		// 1. 未ログインチェック
+		if (account.getId() == null) {
+			return "login";
+		}
+
+		Recipe updateRecipe = recipeRepository.findById(id).get();
+
+		// 2. 投稿者チェック（他人のレシピをPOSTで書き換えられるのを防ぐ）
+		if (!updateRecipe.getUser().getId().equals(account.getId())) {
+			return "redirect:/recipes";
+		}
+
+		Category category = categoryRepository.findById(categoryId).get();
+
+		updateRecipe.setName(name);
+		updateRecipe.setRecipe(recipe);
+		updateRecipe.setCategory(category);
+
+		recipeRepository.save(updateRecipe);
+
 		return "redirect:/recipes";
 	}
+
+	// レシピを削除
+	@PostMapping("/recipes/{id}/delete")
+	public String delete(@PathVariable Integer id) {
+
+		// 1. 未ログインチェック
+		if (account.getId() == null) {
+			return "login";
+		}
+
+		Recipe recipe = recipeRepository.findById(id).get();
+
+		// 2. 投稿者チェック
+		if (!recipe.getUser().getId().equals(account.getId())) {
+			return "redirect:/recipes";
+		}
+
+		recipeRepository.deleteById(id);
+
+		return "redirect:/recipes";
+	}
+
 }
